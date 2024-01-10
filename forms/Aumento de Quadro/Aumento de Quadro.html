@@ -1,0 +1,424 @@
+<html>
+
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script src="mask.js"></script>
+	<script src="scripts.js"></script>
+</head>
+
+<body>
+	<div class="fluig-style-guide">
+		<form name="form" role="form">
+
+			<input type="hidden" id="codColigada" name="codColigada">
+			<input type="hidden" id="codSecao" name="codSecao">
+			<input type="hidden" id="codFuncao" name="codFuncao">
+			<input type="hidden" id="codTipoContrato" name="codTipoContrato">
+			<input type="hidden" id="codSelecConf" name="codSelecConf">
+			<input type="hidden" id="chapaRequisitante" name="chapaRequisitante">
+			<input type="hidden" id="matApUm" name="matApUm">
+			<input type="hidden" id="matApDois" name="matApDois">
+			<input type="hidden" id="matApTres" name="matApTres">
+
+			<input type="hidden" id="nomeApUm" name="nomeApUm">
+			<input type="hidden" id="nomeApDois" name="nomeApDois">
+			<input type="hidden" id="nomeApTres" name="nomeApTres">
+
+			<div class="container-fluid" id="forumlario">
+				<!-- Painel da logo, titulo e data -->
+				<div class="panel panel-primary" style="border-color:#c20014">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-2 fs-txt-center">
+								<img id="imagemLogo" src="/portal/api/servlet/image/01/custom/logo_image.png"
+									style="width: 70%;  margin-top: 5%;">
+							</div>
+							<div class="col-md-8 col-xs-12">
+								<br>
+								<br>
+								<h2 id="titulo" class="fs-txt-center">
+									<b>AUMENTO DE QUADRO</b>
+								</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+
+				<div class="panel panel-primary" style="border-color:#c20014">
+					<div class="panel-heading" style="background-color:#c20014">
+						<b>Identificação</b>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-3 col-xs-12 form-group">
+								<label for="numero"><b>Número Requisição RM</b></label>
+								<input class="form-control" id="numero" name="numero" readonly>
+							</div>
+							<div class="col-md-3 col-xs-12 form-group">
+								<label for="requisitante"><b>Requisitante</b></label>
+								<input type="zoom" class="form-control" id="requisitante" name="requisitante" readonly>
+							</div>
+							<div class="col-md-3 col-xs-12 form-group">
+								<label for="previsao"><b>Previsão</b></label>
+								<input type="date" class="form-control" id="previsao" name="previsao">
+							</div>
+							<div class="col-md-3 col-xs-12 form-group">
+								<label for="previsao"><b>Vagas Solicitadas</b></label>
+								<input type="number" class="form-control" id="vagasSolicitadas" name="vagasSolicitadas" min="0">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-xs-12 form-group">
+								<label for="justificativa"><b>Justificativa</b></label>
+								<textarea class="form-control" id="justificativa" name="justificativa"
+									rows="3"></textarea>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+
+				<div class="panel panel-primary" style="border-color:#c20014">
+					<div class="panel-heading" style="background-color:#c20014">
+						<b>Dados da Vaga</b>
+					</div>
+					<div class="panel-body">
+						<label><b>Local de Destino</b></label>
+						<div class="panel panel-primary">
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-4 col-xs-12 form-group">
+										<label for="coligada"><b>Coligada</b></label>
+										<!-- <input type="zoom" class="form-control" id="coligada" name="coligada"
+											data-zoom="{
+												'displayKey':'coligada',
+												'datasetId':'fsApAumentoQuadro',
+												'maximumSelectionLength':'1',
+												'placeholder':'Escolha a coligada',
+												'fields':[{
+													'field':'codColigada',
+													'label':'Código'
+												},{
+													'field':'coligada',
+													'label':'Coligada',
+													'standard':'true',
+													'search':'search'
+												},{
+													'field':'matApUm',
+													'visible':'false'
+												},{
+													'field':'matApDois',
+													'visible':'false'
+												},{
+													'field':'matApTres',
+													'visible':'false'
+												}]
+											}"> -->
+											<input type="zoom" class="form-control" id="coligada" name="coligada"
+											data-zoom="{
+												'displayKey':'coligada',
+												'datasetId':'fsAumentoQuadro',
+												'maximumSelectionLength':'1',
+												'placeholder':'Escolha a coligada',
+												'fields':[{
+													'field':'codColigada',
+													'label':'Código'
+												},{
+													'field':'coligada',
+													'label':'Coligada',
+													'standard':'true',
+													'search':'search'
+												},{
+													'field':'matApUm',
+													'visible':'false'
+												},{
+													'field':'matApDois',
+													'visible':'false'
+												},{
+													'field':'matApTres',
+													'visible':'false'
+												}]
+											}">
+									</div>
+									<div class="col-md-4 col-xs-12 form-group">
+										<label for="secao"><b>Seção</b></label>
+										<!-- <input type="zoom" class="form-control" id="secao" name="secao"
+											data-zoom="{
+												'displayKey':'secao',
+												'datasetId':'fsApAumentoQuadro',
+												'maximumSelectionLength':'1',
+												'placeholder':'Escolha a Seção',
+												'fields':[{
+													'field':'codSecao',
+													'label':'Código'
+												},{
+													'field':'secao',
+													'label':'Seção',
+													'standard':'true',
+													'search':'search'
+												}]
+											}"> -->
+										<input type="zoom" class="form-control" id="secao" name="secao"
+											data-zoom="{
+												'displayKey':'secao',
+												'datasetId':'fsAumentoQuadro',
+												'maximumSelectionLength':'1',
+												'placeholder':'Escolha a Seção',
+												'fields':[{
+													'field':'codSecao',
+													'label':'Código'
+												},{
+													'field':'secao',
+													'label':'Seção',
+													'standard':'true',
+													'search':'search'
+												}]
+											}">
+									</div>
+									<div class="col-md-4 col-xs-12 form-group">
+										<label for="funcao"><b>Função</b></label>
+										<input type="zoom" class="form-control" id="funcao" name="funcao"
+											data-zoom="{
+												'displayKey':'NOME',
+												'datasetId':'dsGetFuncao',
+												'maximumSelectionLength':'1',
+												'placeholder':'Escolha o Função',
+												'fields':[{
+													'field':'CODIGO',
+													'label':'Código'
+												},{
+													'field':'NOME',
+													'label':'Função',
+													'standard':'true',
+													'search':'search'
+												}]
+											}">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<label><b>Proposta Salarial</b></label>
+						<div class="panel panel-primary">
+							<div class="panel-body">
+								<div class="row">
+									<!--<div class="col-md-4 col-xs-12 form-group">
+										<label for="nivel"><b>Nível</b></label>
+										<input type="zoom" class="form-control" id="nivel" name="nivel"
+											data-zoom="{
+												'displayKey':'colleagueName',
+												'datasetId':'colleague',
+												'maximumSelectionLength':'1',
+												'placeholder':'Escolha o Nível',
+												'fields':[
+													{
+														'field':'colleagueName',
+														'label':'Nome',
+														'standard':'true'
+													}
+												]
+											}">
+									</div>
+									<div class="col-md-4 col-xs-12 form-group">
+										<label for="faixa"><b>Faixa</b></label>
+										<input type="zoom" class="form-control" id="faixa" name="faixa"
+											data-zoom="{
+												'displayKey':'colleagueName',
+												'datasetId':'colleague',
+												'maximumSelectionLength':'1',
+												'placeholder':'Escolha a Faixa',
+												'fields':[
+													{
+														'field':'colleagueName',
+														'label':'Nome',
+														'standard':'true'
+													}
+												]
+											}">
+									</div>-->
+									<div class="col-md-4 col-xs-12 form-group">
+										<label for="salario"><b>Proposta Salarial</b></label>
+										<div class="input-group">
+											<div class="input-group-addon">R$</div>
+											<input type="text" class="form-control" id="salario" name="salario" data-mascara="dinheiro">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="panel panel-primary" style="border-color:#c20014">
+					<div class="panel-heading" style="background-color:#c20014">
+						<b>Rateio de Centro de Custos</b>
+					</div>
+					<div class="panel-body">
+						
+						<div class="row">
+							<div class="col-md-4 form-group">
+								<label for="centroDeCusto"><b>Centro de Custo</b></label>
+								<input type="hidden" id="codCCZoom" name="codCCZoom">
+								<input type="zoom" id="centroDeCusto" name="centroDeCusto" class="form-control" data-zoom="{
+									'displayKey':'NOME',
+									'datasetId':'dsGetCentroCusto',
+									'maximumSelectionLength':'1',
+									'placeholder':'Escolha o Centro de Custo',
+									'fields':[{
+											'field':'CODCCUSTO',
+											'label':'Código'
+									},{
+											'field':'NOME',
+											'label':'Nome',
+											'standard':'true',
+											'search':'search'
+										}
+									]
+								}">
+							</div>
+							<div class="col-md-2 form-group">
+								<label for="percentualCC"><b>Percentual</b></label>
+								<input type="number" id="percentualCC" name="percentualCC" class="form-control" min="0">
+							</div>
+							<div class="col-md-2">
+								<label><br></label><br>
+								<button type="button" class="btn btn-success" id="btnAddCC">Adicionar</button>
+							</div>
+						</div>
+						<hr id="hrAddCC">
+						<div class="row">
+							<div class="panel panel-primary">
+								<table tablename="tableCC" id="tableCC" class="table" noaddbutton="true" nodeletebutton="true">
+									<thead>
+										<tr>
+											<td class="col-md-4"><b>Centro de Custo</b></td>
+											<td class="col-md-2"><b>Percentual</b></td>
+											<td class="col-md-2"></td>
+										</tr>
+									</thead>
+									<tr>
+										<td>
+											<input type="hidden" id="codCentroCusto" name="codCentroCusto">
+											<input type="text" id="CCTable" name="CCTable" class="form-control" readonly>
+										</td>
+										<td>
+											<input type="text" id="percentualCCTable" name="percentualCCTable" class="form-control" readonly>
+										</td>
+										<td>
+											<button type="button" class="btn btn-danger" id="btnRemoveCC"><i class="flaticon flaticon-close icon-sm"></i></button>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4 col-xs-12 form-group">
+								<label for="percentualTotal"><b>Percentual total informado</b></label>
+								<input type="text" name="percentualTotal" id="percentualTotal" class="form-control" readonly>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-primary" style="border-color:#c20014">
+					<div class="panel-heading" style="background-color:#c20014">
+						<b>Campos Complementares</b>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-6 col-xs-12 form-group">
+								<label for="tipoContrato"><b>Tipo de Contrato</b></label>
+								<input type="zoom" class="form-control" id="tipoContrato" name="tipoContrato"
+									data-zoom="{
+										'displayKey':'TIPOCONTRATO',
+										'datasetId':'dsGetTipoContrato',
+										'maximumSelectionLength':'1',
+										'placeholder':'Escolha o Tipo de Contrato',
+										'fields':[{
+											'field':'CODIGO',
+											'label':'Código'
+										},{
+											'field':'TIPOCONTRATO',
+											'label':'Tipo do Contrato',
+											'standard':'true',
+											'search':'search'
+										}]
+									}">
+							</div>
+							<div class="col-md-6 col-xs-12 form-group">
+								<label for="selecaoConfi"><b>Seleção Confidencial</b></label>
+								<input type="zoom" class="form-control" id="selecaoConfi" name="selecaoConfi"
+									data-zoom="{
+										'displayKey':'CONFIDENCIAL',
+										'datasetId':'dsGetSelecConf',
+										'maximumSelectionLength':'1',
+										'placeholder':'Escolha o tipo de Seleção',
+										'fields':[{
+											'field':'CODIGO',
+											'label':'Código'
+										},{
+											'field':'CONFIDENCIAL',
+											'label':'Seleção Confidencial',
+											'standard':'true',
+											'search':'search'
+										}]
+									}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-xs-12 form-group">
+								<label for="requisitosBasic"><b>Requisitos Básicos</b></label>
+								<textarea class="form-control" id="requisitosBasic" name="requisitosBasic"
+									rows="4"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-xs-12 form-group">
+								<label for="conhecimento"><b>Conhecimento</b></label>
+								<textarea class="form-control" id="conhecimento" name="conhecimento"
+									rows="4"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-xs-12 form-group">
+								<label for="habilidades"><b>Habilidades</b></label>
+								<textarea class="form-control" id="habilidades" name="habilidades"
+									rows="4"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-xs-12 form-group">
+								<label for="atitudes"><b>Atitudes</b></label>
+								<textarea class="form-control" id="atitudes" name="atitudes"
+									rows="4"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-xs-12 form-group">
+								<label for="descAtividades"><b>Desc. resumida das principais atividades</b></label>
+								<textarea class="form-control" id="descAtividades" name="descAtividades"
+									rows="4"></textarea>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 col-xs-12 form-group">
+								<label for="horarioTrabalho"><b>Horário de Trabalho (Escala de Folga)</b></label>
+								<textarea class="form-control" id="horarioTrabalho" name="horarioTrabalho"
+									rows="4"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>
